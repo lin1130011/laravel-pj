@@ -9,20 +9,27 @@
                 <button onclick="location.href='{{ route('menus.create') }}'" class="btn btn-lg btn-success">新增</button>
             </div>
         </div>
-        <div class="row d-flex align-items-center mb-3">
-            <div class="col-6">圖片</div>
-            <div class="col-6">編輯</div>
+        <div class="row d-flex align-items-center mt-5">
+            <div class="col-4">圖片</div>
+            <div class="col-4">顯示</div>
+            <div class="col-4">編輯</div>
         </div>
-        @foreach ($menu as $item)
+        @foreach ($menus as $item)
             <div class="row d-flex align-items-center mb-3">
-                <div class="col-6">
+                <div class="col-4">
                     <img style="width: 300px; height: 150px;" src="{{ asset('images/' . $item['img']) }}" alt="">
                 </div>
-                <div class="col-6">
+                <div class="col-4">
+                    {{ $item['sh'] == 1 ? '顯示' : '不顯示' }}
+                </div>
+                <div class="col-4">
                     <button onclick="location.href='{{ route('menus.edit', $menu = $item['id']) }}'"
                         class="btn btn-lg btn-info">編輯</button>
                 </div>
             </div>
         @endforeach
+        <div class="mt-3">
+            {{ $menus->links() }}
+        </div>
     </div>
 @endsection

@@ -14,7 +14,7 @@ class MenuController extends Controller
     {
         $menu = new Menu();
         $data = $menu->all();
-        return view("menu.index", ['menu' => $data]);
+        return view("menu.index", ['menus' => $data]);
     }
 
     /**
@@ -37,11 +37,11 @@ class MenuController extends Controller
         if ($file->move($target_path, $file_name)) {
             $menu->img = $file_name;
             $menu->sh = 0;
-            $menu->save();
         } else {
             // 处理文件移动失败的情况
             return back()->with('error', '文件上传失败');
         }
+        $menu->save();
         return back()->with('success', '上傳成功');
     }
 
@@ -66,6 +66,7 @@ class MenuController extends Controller
      */
     public function update(Request $request, Menu $menu)
     {
+
         if ($request->has('del')) {
             // 如果用户选择了删除，删除此菜单
             $menu->delete();

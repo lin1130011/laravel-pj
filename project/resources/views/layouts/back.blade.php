@@ -32,6 +32,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('menus.index') }}">菜單管理</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('items.index') }}">商品管理</a>
+                    </li>
                 @else
                 @endif
                 <li class="nav-item ms-auto">

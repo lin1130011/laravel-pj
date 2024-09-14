@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="container mt-5 text-center align-middle">
-        <form action="{{ route('menus.update', $id = $menu['id']) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('items.update', $id = $item['id']) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="row d-flex align-items-center mb-3 text-center">
@@ -15,11 +15,11 @@
             </div>
             <div class="row d-flex align-items-center mb-3 text-center">
                 <div class="col-3">
-                    <img style="width: 300px; height: 150px;" src="{{ asset('images/' . $menu['img']) }}" alt="">
+                    <img style="width: 300px; height: 150px;" src="{{ asset('images/' . $item['img']) }}" alt="">
                 </div>
                 <div class="col-3">
                     <input type="checkbox" name="sh" id=""
-                        value=""{{ $menu['sh'] == 1 ? 'checked' : '' }}>
+                        value=""{{ $item['sh'] == 1 ? 'checked' : '' }}>
                 </div>
                 <div class="col-3">
                     <input type="checkbox" name="del" id="" value="">
