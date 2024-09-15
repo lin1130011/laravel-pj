@@ -28,8 +28,6 @@
                 </div>
             </div>
         @endforeach
-        <div class="mt-3">
-            {{ $menus->links() }}
-        </div>
+
     </div>
 @endsection

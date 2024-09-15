@@ -7,18 +7,22 @@
         <form action="{{ route('items.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row d-flex align-item-center mb-3">
-                <div class="col-4">上傳商品圖片</div>
-                <div class="col-4">商品介紹</div>
-                <div class="col-4">設定價格</div>
+                <div class="col-3">上傳商品圖片</div>
+                <div class="col-3">商品名稱</div>
+                <div class="col-3">商品介紹</div>
+                <div class="col-3">設定價格</div>
             </div>
             <div class="row d-flex align-item-center mb-3">
-                <div class="col-4">
+                <div class="col-3">
                     <input type="file" name="img" id="">
                 </div>
-                <div class="col-4">
+                <div class="col-3">
+                    <input type="text" name="name" id="">
+                </div>
+                <div class="col-3">
                     <input type="text" name="text" id="">
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <input type="number" name="price" id="">
                 </div>
             </div>

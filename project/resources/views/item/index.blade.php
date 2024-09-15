@@ -10,7 +10,8 @@
             </div>
         </div>
         <div class="row d-flex align-items-center mt-5">
-            <div class="col-4">商品圖片</div>
+            <div class="col-2">商品圖片</div>
+            <div class="col-2">商品名稱</div>
             <div class="col-2">商品介紹</div>
             <div class="col-2">商品價格</div>
             <div class="col-2">顯示</div>
@@ -18,8 +19,11 @@
         </div>
         @foreach ($items as $item)
             <div class="row d-flex align-items-center mb-3">
-                <div class="col-4">
-                    <img style="width: 300px; height: 150px;" src="{{ asset('images/' . $item['img']) }}" alt="">
+                <div class="col-2">
+                    <img style="width: 200px; height: 150px;" src="{{ asset('images/' . $item['img']) }}" alt="">
+                </div>
+                <div class="col-2">
+                    {{ $item['name'] }}
                 </div>
                 <div class="col-2">
                     {{ $item['text'] }}
@@ -36,11 +40,6 @@
                 </div>
             </div>
         @endforeach
-        <style>
-            .pagination-info {
-                display: none;
-            }
-        </style>
         <div class="d-flex justify-content-center mt-3">
             <ul class="pagination">
                 {{ $items->links() }}

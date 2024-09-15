@@ -17,7 +17,7 @@
         <div class="container-fluid">
             <ul class="navbar-nav w-100">
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('home') }}">返回首頁</a>
+                    <a class="nav-link active" href="{{ route('homes.index') }}">返回首頁</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('profile.edit') }}">編輯個人資料</a>

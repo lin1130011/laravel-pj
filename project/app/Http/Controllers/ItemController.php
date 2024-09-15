@@ -36,9 +36,10 @@ class ItemController extends Controller
         $target_path = public_path("images");
         if ($file->move($target_path, $file_name)) {
             $item->img = $file_name;
-            $item->sh = 0;
+            $item->sh = 1;
             $item->text = $request->text;
             $item->price = $request->price;
+            $item->name = $request->name;
         } else {
             return back()->with("error", "上傳失敗");
         }
@@ -60,7 +61,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        return view("item.edit", ['item' => $item]);
     }
 
     /**
@@ -68,7 +69,30 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        if ($request->has('del')) {
+            // 如果用户选择了删除，删除此菜单
+            $item->delete();
+            return redirect()->route('items.index')->with('success', '菜單已刪除');
+        }
+        $item->sh = $request->has('sh') ? 1 : 0;
+        if ($request->hasFile('img')) {
+            // 获取文件
+            $file = $request->file('img');
+            // $fileName = time() . '_' . $file->getClientOriginalName();  使用时间戳防止重名
+            $fileName = $file->getClientOriginalName();
+
+            // 移动文件到 public/images 目录
+            $file->move(public_path('images'), $fileName);
+
+            // 更新菜单的图片路径
+            $item->img = $fileName;
+        }
+        $item->text = $request->text;
+        $item->price = $request->price;
+        // 保存更新后的菜单
+        $item->save();
+
+        return redirect()->route('items.index')->with('success', '菜單已更新');
     }
 
     /**

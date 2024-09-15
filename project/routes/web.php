@@ -1,13 +1,12 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home.index');
-})->name("home");
+Route::get('/', [HomeController::class, 'index'])->name("home");
 
 Route::get('/back', function () {
     return view('back.index');
@@ -19,6 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::resource("homes", HomeController::class);
 Route::resource("menus", MenuController::class)->middleware(['auth', 'verified']);
 Route::resource("items", ItemController::class)->middleware(['auth', 'verified']);
 
