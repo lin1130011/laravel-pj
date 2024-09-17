@@ -42,7 +42,7 @@ class MenuController extends Controller
             return back()->with('error', '文件上传失败');
         }
         $menu->save();
-        return back()->with('success', '上傳成功');
+        return redirect()->route("menus.index");
     }
 
     /**

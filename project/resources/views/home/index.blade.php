@@ -6,26 +6,25 @@
         <div class="container mt-5">
             {{-- 招牌 --}}
             <div class="row">
-                @foreach ($menu as $da1)
+                @foreach ($menus as $menu)
                 @endforeach
                 <div class="col-12">
-                    <img class="w-100" src="{{ asset('images/' . $da1['img']) }}" alt="">
+                    <img class="w-100" src="{{ asset('images/' . $menu['img']) }}" alt="">
                 </div>
             </div>
 
             {{-- 商品 --}}
             <div class="row">
-                @foreach ($item as $da)
+                @foreach ($items as $item)
                     <div class="col-12 col-lg-4 mt-3">
                         <div class="card" style="width:400px">
-                            <img style="width: 400px;height:400px;" src="{{ asset('images/' . $da['img']) }}" alt="Card image">
-                            {{-- <img class="" src="{{ asset('images/' . $da['img']) }}" alt="Card image"
-                                style="width:400px; height:400px;"> --}}
+                            <img style="width: 400px;height:400px;" src="{{ asset('images/' . $item['img']) }}"
+                                alt="Card image">
                             <div class="card-body">
-                                <h4 class="card-title">{{ $da['name'] }}</h4>
-                                <p class="card-text">{{ $da['text'] }}
+                                <h4 class="card-title">{{ $item['name'] }}</h4>
+                                <p class="card-text">{{ $item['text'] }}
                                 </p>
-                                <a href="#" class="btn btn-lg btn-success">購買</a>
+                                <a href="{{ route('carts.show', $item['id']) }}" class="btn btn-lg btn-success">購買</a>
                             </div>
                         </div>
                     </div>

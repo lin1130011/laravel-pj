@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
         } else {
             $request->session()->put("login", 0);
         }
-
+        session('cart');
         return redirect()->intended(route('home', absolute: false));
     }
 

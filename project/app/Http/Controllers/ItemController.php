@@ -45,7 +45,7 @@ class ItemController extends Controller
         }
         // dd($request);
         $item->save();
-        return back()->with("success", "上傳成功");
+        return redirect()->route("items.index");
     }
 
     /**

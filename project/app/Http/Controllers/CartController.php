@@ -4,18 +4,43 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
-use App\Models\Menu;
 
-class HomeController extends Controller
+class Cartcontroller extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $item = Item::where('sh', 1)->get();
-        $menu = Menu::where('sh', 1)->get();
-        return view('home.index', ['items' => $item], ['menus' => $menu]);
+        $cart = session()->get('cart', []);
+
+        // dd($cart);
+        return view('cart.index', compact('cart'));
+    }
+
+
+    public function add(Request $request)
+    {
+        // dd($request);
+        $id = $request->id;
+        $cart = session()->get('cart', []);
+        $item = Item::where("id", $id)->first();
+        // dd($item);
+
+        $cart[] = [
+            'img' => $item->img,
+            'name' => $item->name,
+            'text' => $item->text,
+            'price' => $item->price,
+            'quantity' => $request->quantity,
+            'total_price' => $request->total_price
+        ];
+
+
+        // 更新 session 中的购物车数据
+        session()->put('cart', $cart);
+
+        return redirect()->route("carts.index");
     }
 
     /**
@@ -39,7 +64,9 @@ class HomeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $item = Item::where('id', $id)->first();
+        // $item = Item::find($id);
+        return view("cart.show", ['item' => $item]);
     }
 
     /**
@@ -47,7 +74,7 @@ class HomeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        dd($id);
     }
 
     /**
