@@ -5,14 +5,13 @@
 
 @if (empty($cart))
     @section('content')
-        <h2>購物車為空</h2>
+        <div class="text-center">
+            <h2>購物車為空</h2>
+            <button class="btn btn-lg btn-primary" onclick="location.href='{{ route('homes.index') }}'">返回購物</button>
+        </div>
     @endsection
 @else
     @section('content')
-        @if (empty($cart))
-            <h2>購物車為空</h2>
-            {{ exit() }}
-        @endif
         <div class="container mt-5 text-center align-middle">
             <form action="">
                 <div class="row d-flex align-items-center mb-3 text-center">
